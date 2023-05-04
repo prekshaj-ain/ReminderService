@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const { PORT } = require('./config/serverConfig');
 const { sendBasicEmail } = require('./services/email-service');
 const ApiRoutes = require('./routes/index'); 
+const jobs  = require('./utils/jobs');
 
 const setupAndStartServer = async ()=>{
     // create the express object
@@ -12,7 +13,7 @@ const setupAndStartServer = async ()=>{
     app.use(bodyParser.urlencoded({extended:true}))
 
     app.use('/api',ApiRoutes)
-
+    jobs();
     app.listen(PORT,async ()=>{
         console.log(`server started at ${PORT}`);
          

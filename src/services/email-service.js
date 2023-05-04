@@ -19,7 +19,7 @@ const repo = new TicketRepository();
 
 const fetchPendingEmails = async (timestamp)=>{
     try{
-        const response = await repo.getAll();
+        const response = await repo.get({status : 'PENDING'});
         return response;
     }catch(error){
         throw error;
